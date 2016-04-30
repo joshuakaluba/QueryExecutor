@@ -1,15 +1,15 @@
 ﻿using QueryExecutor.Models;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
+/// <summary>
+/// Joshua Kaluba - 2016-04-30
+/// </summary>
 
 namespace QueryExecutor
 {
     class Program
     {
-
         private static DBMSSQL GetMSSQLDB()
         {
             //Private method to hold Connection String info for the database.
