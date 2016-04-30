@@ -34,7 +34,7 @@ namespace QueryExecutor
                 }
 
                 //Get total number of students.
-                object StudentCount = GetNumberOfStudents();
+                object StudentCount = GetNumberOfStudents();               
                 Console.WriteLine("Total number of students : " + StudentCount.ToString());
 
                 //Call method to create student
@@ -49,11 +49,22 @@ namespace QueryExecutor
                 DeleteStudent();
                 Console.WriteLine("Student deleted");
             }
-            catch(System.Data.SqlClient.SqlException Ex)
+            catch(System.Data.SqlClient.SqlException ex)
             {
-                Console.WriteLine(Ex.Message);
+                //if we have problems with the MSSQL connection 
+                Console.WriteLine(ex.Message);
             }
-            
+            catch(MySql.Data.MySqlClient.MySqlException ex)
+            {
+                //if we have problems with the MSSQL connection
+                Console.WriteLine(ex.Message);
+            }
+            catch(Exception ex)
+            {
+                //Idealy we would have more specific error handling for whatever database provider we are going with
+                //This is just the last line of defence 
+                Console.WriteLine(ex.Message);
+            }
 
 
             Console.Read();
@@ -65,7 +76,7 @@ namespace QueryExecutor
             DBMSSQL Db = GetMSSQLDB();
 
             //Declare the insert statement.
-            String Query = "INSERT INTO Student (LastName, FirstName, StreetAddress) Values ('Murkel','Cliff','115 Niagara Ave');";
+            String Query = "INSERT INTO Student (ID,LastName, FirstName, StreetAddress) Values (4,'Murkel','Cliff','115 Niagara Ave');";
 
             //Execute the query
             Db.NonQuery(Query);
