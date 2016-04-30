@@ -4,12 +4,12 @@
 /// 
 namespace QueryExecutor
 {
-    public class DBMSQL : ADB<System.Data.SqlClient.SqlConnection>
+    public class DBMSSQL : ADB<System.Data.SqlClient.SqlConnection>
     {
         /// <summary>
         /// For the MSSQLConnection
         /// </summary>
-        public DBMSQL(DbConfig Config) : base(Config)
+        public DBMSSQL(DbConfig Config) : base(Config)
         {
 
         }

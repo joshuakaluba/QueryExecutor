@@ -10,21 +10,45 @@ namespace QueryExecutor
     class Program
     {
         static void Main(string[] args)
-        {            
-            DBMSQL Db = new DBMSQL(new DbConfig("db", "user", "pass", "host"));
-
-            String QueryString = "SELECT LastName, FirstName, StreetAddress from Student";
-
-            List<Student> Students = new List<Student>(Db.Query<Student>(QueryString));            
+        {
+            List<Student> Students = GetStudentInfo();
 
             foreach (Student Student in Students)
             {
-                Console.WriteLine(Student.FirstName + "\n");
+                Console.WriteLine("First name : " + Student.FirstName + ", Last name : " + Student.LastName + ", Street Address : " + Student.StreetAddress);
             }
-            
-            Console.WriteLine(Students.Count.ToString());
 
+
+            object StudentCount = GetNumberOfStudents();
+            Console.WriteLine("Total number of students : " + StudentCount.ToString());
+
+
+            Console.Read();
+        }
+
+        public static object GetNumberOfStudents()
+        {
+            DBMSSQL Db = GetMSSQLDB();
+            object StudentCount = Db.Scalar("Select COUNT(*) FROM Student;");
+            return StudentCount;
+        }
+
+        public static List<Student> GetStudentInfo()
+        {
+            DBMSSQL Db = GetMSSQLDB();
+
+            String Query = "SELECT LastName, FirstName, StreetAddress from Student;";
+
+            List<Student> Students = new List<Student>(Db.Query<Student>(Query));
+
+            return Students;
             
+        }
+
+        private static DBMSSQL GetMSSQLDB()
+        {
+            DBMSSQL Db = new DBMSSQL(new DbConfig("dbName", "user", "password", "host"));
+            return Db;
         }
     }
 }
