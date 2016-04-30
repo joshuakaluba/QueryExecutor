@@ -7,7 +7,7 @@ namespace QueryExecutor
     public class DBMSQL : ADB<System.Data.SqlClient.SqlConnection>
     {
         /// <summary>
-        /// Handles the MSSQLConnection
+        /// For the MSSQLConnection
         /// </summary>
         public DBMSQL(DbConfig Config) : base(Config)
         {

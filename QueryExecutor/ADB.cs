@@ -77,7 +77,7 @@ namespace QueryExecutor
 
             System.Xml.Serialization.XmlSerializer serializer;
 
-            //Declare an array of ResultClass which is the template object
+            //Declare an array of ResultClass which is a template object
             ResultClass[] results;
 
             //Open a connection to the database

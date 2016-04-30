@@ -3,6 +3,7 @@
 /// <summary>
 /// Joshua Kaluba
 /// </summary>
+
 namespace QueryExecutor
 {
     interface IDB

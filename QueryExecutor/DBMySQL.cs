@@ -7,9 +7,9 @@ namespace QueryExecutor
     public class DBMySQL : ADB<MySql.Data.MySqlClient.MySqlConnection>
     {
         /// <summary>
-        /// Handles the MySQLConnection
+        /// For the MySQLConnection
         /// </summary>
-        /// <param name="Config"></param>
+        
         public DBMySQL (DbConfig Config) : base (Config)
         {
 
