@@ -1,4 +1,5 @@
-﻿using System;
+﻿using QueryExecutor.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,27 +10,27 @@ namespace QueryExecutor
     class Program
     {
         static void Main(string[] args)
-        {
-            /*
-              
-            DbConfig DbConfig = new DbConfig("db", "user", "pass", "host");
-            DBMSQL Db = new DBMSQL(DbConfig);
+        {            
+            DBMSQL Db = new DBMSQL(new DbConfig("db", "user", "pass", "host"));
 
-            String Q = "SELECT * from Sanction";
+            String QueryString = "SELECT LastName, FirstName, StreetAddress from Student";
 
-            List<Sanction> S = new List<Sanction>(Db.Query<Sanction>(Q));
-            // Db.NonQuery("INSERT into Sanction (SanctionName) Values ('Bones');");
+            List<Student> Students = new List<Student>(Db.Query<Student>(QueryString));
 
-            foreach (Sanction k in S)
+            Student G = Students.Where(d => d.FirstName == "mark").FirstOrDefault();
+
+            
+
+            
+
+            foreach (Student Student in Students)
             {
-                Console.WriteLine(k.SanctionName + "\n");
+                Console.WriteLine(Student.FirstName + "\n");
             }
+            
+            Console.WriteLine(Students.Count.ToString());
 
-            // return CustomerGroups;
-
-            Console.WriteLine(S.Count.ToString());
-
-            */
+            
         }
     }
 }
