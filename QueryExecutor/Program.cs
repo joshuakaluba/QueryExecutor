@@ -9,38 +9,49 @@ namespace QueryExecutor
 {
     class Program
     {
+
+        private static DBMSSQL GetMSSQLDB()
+        {
+            //Private method to hold Connection String info for the database.
+
+            //Port is an optional parameter in the DB config and is not needed for MSSQL databases.
+            DBMSSQL Db = new DBMSSQL(new DbConfig("dbName", "user", "password", "host"));
+
+            return Db;
+        }
+
         static void Main(string[] args)
         {
             try
             {
+                //Get list of students
                 List<Student> Students = GetStudentInfo();
 
+                //loop through list and display student info
                 foreach (Student Student in Students)
                 {
                     Console.WriteLine("First name : " + Student.FirstName + ", Last name : " + Student.LastName + ", Street Address : " + Student.StreetAddress);
                 }
 
+                //Get total number of students.
                 object StudentCount = GetNumberOfStudents();
                 Console.WriteLine("Total number of students : " + StudentCount.ToString());
 
+                //Call method to create student
                 CreateStudent();
                 Console.WriteLine("\nNew Student Created");
 
-                System.Threading.Thread.Sleep(1000);
-
+                //Call method to update student records
                 UpdateStudent();
-
                 Console.WriteLine("Student updated");
 
-                System.Threading.Thread.Sleep(1000);
-
+                //Call method to delete student
                 DeleteStudent();
-
                 Console.WriteLine("Student deleted");
             }
-            catch(System.Data.SqlClient.SqlException)
+            catch(System.Data.SqlClient.SqlException Ex)
             {
-                Console.WriteLine("Unable to connect to database, make sure your connection string info is correct");
+                Console.WriteLine(Ex.Message);
             }
             
 
@@ -119,16 +130,5 @@ namespace QueryExecutor
             
         }
 
-        private static DBMSSQL GetMSSQLDB()
-        {
-            //Private method to hold connection string info for the database.
-
-            //Port is an optional parameter in the DB config and is not needed for MSSQL databases.
-            //DBMSSQL Db = new DBMSSQL(new DbConfig("dbName", "user", "password", "host"));
-
-            DBMSSQL Db = new DBMSSQL(new DbConfig("adminkaluba", "joshkal", "Guyk433%", "198.71.225.145"));
-
-            return Db;
-        }
     }
 }
