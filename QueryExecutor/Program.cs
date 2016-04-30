@@ -15,13 +15,7 @@ namespace QueryExecutor
 
             String QueryString = "SELECT LastName, FirstName, StreetAddress from Student";
 
-            List<Student> Students = new List<Student>(Db.Query<Student>(QueryString));
-
-            Student G = Students.Where(d => d.FirstName == "mark").FirstOrDefault();
-
-            
-
-            
+            List<Student> Students = new List<Student>(Db.Query<Student>(QueryString));            
 
             foreach (Student Student in Students)
             {
