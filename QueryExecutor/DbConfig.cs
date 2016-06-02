@@ -8,12 +8,15 @@ namespace QueryExecutor
 {
     
     public class DbConfig
-    {       
+    {
+        private Int16 _port = 0;
+
         public String Database { get; set; }
         public String Name { get; set; }
         public String Password { get; set; }
-        public String  Host { get; set; }
-        public Int16 Port { get; set; }
+        public String Host { get; set; }
+        public Int16 Port { get { return _port; } set { _port = value; } }
+
 
         public DbConfig(String Database, String Name, String Password, String Host, Int16 Port)
         {

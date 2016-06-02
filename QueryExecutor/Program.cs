@@ -13,7 +13,7 @@ namespace QueryExecutor
         private static DBMSSQL GetMSSQLDB()
         {
             //Private method to hold Connection String info for the database.
-            
+
             DBMSSQL Db = new DBMSSQL(new DbConfig("dbName", "user", "password", "host"));
 
             return Db;
