@@ -15,7 +15,7 @@ namespace QueryExecutor
             //Private method to hold Connection String info for the database.
 
             //Port is an optional parameter in the DB config and is not needed for MSSQL databases.
-            DBMSSQL Db = new DBMSSQL(new DbConfig("dbName", "user", "password", "host"));
+            DBMSSQL Db = new DBMSSQL(new DbConfig("TestMSSqlDB", "mrkaluba", "Password01", "192.168.0.230"));
 
             return Db;
         }
